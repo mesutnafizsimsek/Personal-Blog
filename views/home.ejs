@@ -1,6 +1,33 @@
 <%- include('partials/header'); -%>
 
 <h1>HOME</h1>
+<!-- %= is Scriptlet tag used for writing js and accessing sended js object from app.js -->
 <p> <%= homeStartingContent %> </p>
-<p> <%= console.log(posts[0].title) %> </p>
+
+<!-- Classical for loop-->
+<%#  console.log(posts.length);  %>
+<%# for(var i=0; i<posts.length; i++) { %> 
+  <%#  console.log(posts[i].title); %>
+<%# }; %> 
+
+<!-- Foreach type -->
+<%# posts.forEach( (post) => { %>
+    <%# console.log(post.title); %>
+<%# }); %>
+
+
+<!-- Add as a html element -->
+<% posts.forEach( (post) => { %>
+
+    <% var myTruncatedString =  post.content.substring(0,140); %>
+    <% myTruncatedString += "..."; %>
+
+    <h1> <%= post.title %> </h1>
+    <p> <%= myTruncatedString %> 
+    <a href="/posts/<%= post.title %>"> Read More</a>
+    </p>
+
+<% }); %>
+
+
 <%- include('partials/footer'); -%>
